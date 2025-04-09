@@ -9,10 +9,9 @@ return {
 	},
 	config = function()
 		-- close quickfix menu after selecting choice and center screen
-		vim.api.nvim_create_autocmd(
-		    "FileType", {
-		    pattern = { "qf" },
-		    command = [[nnoremap <buffer> <CR> <CR>:cclose<CR>zz]]
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = { "qf" },
+			command = [[nnoremap <buffer> <CR> <CR>:cclose<CR>zz]],
 		})
 
 		local lsp_config = require("lspconfig")
@@ -47,8 +46,21 @@ return {
 		-- capabilities.offsetEncoding = "utf-16"
 
 		-- setup for languages using default configuration
-		local servers =
-			{ "clangd", "docker_compose_language_service", "html", "cssls", "ruff", "pyright", "asm_lsp", "yamlls", "buf_ls", "graphql", "templ", "prismals", "sqls" }
+		local servers = {
+			"clangd",
+			"docker_compose_language_service",
+			"html",
+			"cssls",
+			"ruff",
+			"pyright",
+			"asm_lsp",
+			"yamlls",
+			"buf_ls",
+			"graphql",
+			"templ",
+			"prismals",
+			"sqls",
+		}
 		for _, server in ipairs(servers) do
 			lsp_config[server].setup({
 				on_attach = on_attach,
@@ -56,11 +68,11 @@ return {
 			})
 		end
 
-        -- TODO
-        --
-        -- create something by myself
-        -- this crashes neovim occasionally
-        --
+		-- TODO
+		--
+		-- create something by myself
+		-- this crashes neovim occasionally
+		--
 		-- -- sqls setup
 		-- local sqls_root = vim.fs.root(0, ".git")
 		-- if sqls_root == nil then
@@ -90,7 +102,7 @@ return {
 					analyses = {
 						unusedparams = true,
 					},
-                    gofumpt = true,
+					gofumpt = true,
 				},
 			},
 		})
@@ -169,6 +181,19 @@ return {
 		})
 
 		-- setup linters and formatters
+		lsp_config["golangci_lint_ls"].setup({
+			init_options = {
+				command = {
+					"golangci-lint",
+					"run",
+					"--output.json.path",
+					"stdout",
+					"--show-stats=false",
+					"--issues-exit-code=1",
+				},
+			},
+		})
+
 		lsp_config["eslint"].setup({})
 
 		require("formatter").setup({
