@@ -48,7 +48,7 @@ return {
 
 		-- setup for languages using default configuration
 		local servers =
-			{ "clangd", "docker_compose_language_service", "html", "cssls", "ruff_lsp", "pyright", "asm_lsp", "yamlls", "bufls", "graphql", "templ", "prismals", "sqls" }
+			{ "clangd", "docker_compose_language_service", "html", "cssls", "ruff", "pyright", "asm_lsp", "yamlls", "buf_ls", "graphql", "templ", "prismals", "sqls" }
 		for _, server in ipairs(servers) do
 			lsp_config[server].setup({
 				on_attach = on_attach,
@@ -149,7 +149,7 @@ return {
 			root_dir = lsp_config.util.root_pattern("deno.json", "deno.jsonc"),
 		})
 
-		lsp_config.tsserver.setup({
+		lsp_config.ts_ls.setup({
 			on_attach = function(_, bufnr)
 				on_attach(_, bufnr)
 				vim.keymap.set("n", "<space>f", ":Format<CR>", { buffer = bufnr })

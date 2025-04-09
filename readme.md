@@ -79,3 +79,7 @@ Then, add the required group (should be created by the install command, if this 
 
 `sudo addgroup fuse`
 `sudo adduser $USER fuse`
+
+### FAQ
+
+1. In case you're seeing any errors from treesitter, please make sure you ran `TSUpdate` command to update all the parsers.

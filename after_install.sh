@@ -55,11 +55,14 @@ curl -fsSL https://tailscale.com/install.sh | sh
 # git aliases
 sh ./git_aliases.sh
 
-# install mise (asdf equivalent)
-curl https://mise.run | sh
+# install dev tool managers
+./nvm_install.sh
+
+# install latest lts node version
+nvm install --lts node
 
 # install go
-mise use -g go@1.23
+./go_install.sh
 
 # install rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -81,7 +84,7 @@ python3 get-platformio.py
 rm get-platformio.py
 
 # clone scripts
-git clone git@github.com:mateuszkowalke/scripts.git ~/Scripts
+git clone git@github.com:kowaltek/scripts.git ~/Scripts
 
 # install scripts
 mkdir -p ~/.local/bin

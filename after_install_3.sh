@@ -2,9 +2,6 @@
 
 set -e
 
-# set the node version to be used globally
-mise use -g node@22
-
 # install typescript globally (needed by pop shell install)
 npm install -g typescript
 

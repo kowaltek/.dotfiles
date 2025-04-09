@@ -69,5 +69,7 @@ keybind = ctrl+b>l=resize_split:right,10
 keybind = ctrl+b>k=resize_split:up,10
 keybind = ctrl+b>j=resize_split:down,10
 
+font-family = "Hack Nerd Font"
+
 keybind = f11=toggle_fullscreen
 fullscreen = true

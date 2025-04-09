@@ -155,9 +155,10 @@ fi
 alias ll='ls -alF'
 alias lg='lazygit'
 
-# activate mise
-eval "$(/home/mk/.local/bin/mise activate zsh)"
-
 # Starship prompt initialization
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
