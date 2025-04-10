@@ -60,6 +60,7 @@ return {
 			"templ",
 			"prismals",
 			"sqls",
+            "bashls"
 		}
 		for _, server in ipairs(servers) do
 			lsp_config[server].setup({
