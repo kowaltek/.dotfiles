@@ -1,4 +1,4 @@
-[shell]
+[terminal.shell]
 program = "/bin/zsh"
 args = ["-l"]
 
@@ -17,4 +17,6 @@ primary = { background = "#1A1D23" }
 
 [keyboard]
 bindings = [{ key = "F11", action = "ToggleFullscreen" }]
+
+[terminal]
 
