@@ -60,7 +60,7 @@ return {
 			"templ",
 			"prismals",
 			"sqls",
-            "bashls"
+			"bashls",
 		}
 		for _, server in ipairs(servers) do
 			lsp_config[server].setup({
@@ -106,6 +106,15 @@ return {
 					gofumpt = true,
 				},
 			},
+		})
+		-- sql setup
+		lsp_config.sqls.setup({
+			on_attach = function(_, bufnr)
+				on_attach(_, bufnr)
+				vim.keymap.set("n", "<space>f", ":Format<CR>", { buffer = bufnr })
+				vim.keymap.set("n", "<space>F", ":FormatWrite<CR>", { buffer = bufnr })
+			end,
+			capabilities = capabilities,
 		})
 
 		-- lua setup
@@ -197,6 +206,11 @@ return {
 
 		lsp_config["eslint"].setup({})
 
+		local sql_formatter_config = require("formatter.filetypes.sql").sql_formatter()
+		sql_formatter_config.args = {
+			"--config",
+			'{\\"keywordCase\\":\\"upper\\"}',
+		}
 		require("formatter").setup({
 			logging = true,
 			filetype = {
@@ -220,6 +234,9 @@ return {
 				},
 				lua = {
 					require("formatter.filetypes.lua").stylua,
+				},
+				sql = {
+					sql_formatter_config,
 				},
 			},
 		})
