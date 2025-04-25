@@ -13,6 +13,8 @@ for i in {1..9}; do gsettings set org.gnome.desktop.wm.keybindings switch-to-wor
 
 for i in {1..9}; do gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-$i "['<Super><Shift>$i']";done
 
+gsettings set org.gnome.desktop.default-applications.terminal exec alacritty
+
 # install pop shell
 # this requires typescript to be globally available
 git clone https://github.com/pop-os/shell ~/pop-shell
