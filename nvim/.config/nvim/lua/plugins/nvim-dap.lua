@@ -70,18 +70,22 @@ return {
 			args = { vim.fn.stdpath("data") .. "/mason/packages/chrome-debug-adapter/out/src/chromeDebug.js" },
 		}
 
-		local mason_registry = require("mason-registry")
-		local codelldb = mason_registry.get_package("codelldb")
-		local codelldb_path = codelldb:get_install_path() .. "/extension/adapter/codelldb"
-
-		dap.adapters.codelldb = {
-			type = "server",
-			port = "${port}",
-			executable = {
-				command = codelldb_path,
-				args = { "--port", "${port}" },
-			},
-		}
+        -- TODO
+        -- fix rust config
+        -- (vim.fn.expand "$MASON/packages/codelldb" instead of get_install_path???)
+        --
+		-- local mason_registry = require("mason-registry")
+		-- local codelldb = mason_registry.get_package("codelldb")
+		-- local codelldb_path = codelldb:get_install_path() .. "/extension/adapter/codelldb"
+		--
+		-- dap.adapters.codelldb = {
+		-- 	type = "server",
+		-- 	port = "${port}",
+		-- 	executable = {
+		-- 		command = codelldb_path,
+		-- 		args = { "--port", "${port}" },
+		-- 	},
+		-- }
 
 		-- configurations
 		dap.configurations.javascript = {
