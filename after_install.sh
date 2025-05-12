@@ -59,6 +59,7 @@ sh ./git_aliases.sh
 ./nvm_install.sh
 
 # install latest lts node version
+. ~/.nvm/nvm.sh
 nvm install --lts node
 
 # install go
