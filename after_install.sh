@@ -32,7 +32,7 @@ sudo apt-get -y install apt-transport-https i3-wm i3status i3lock \
     stow fzf pip tmux lm-sensors brave-browser liferea pgadmin4 ripgrep \
     maim xclip xsel feh compton jq wireshark nmap gnome-clocks solaar \
     fuse libfuse2 gimp valgrind gdbserver btop brightnessctl obs-studio \
-    nextcloud-desktop moreutils libpq-dev python3-venv 
+    nextcloud-desktop moreutils libpq-dev python3-venv
 
 # alacritty dependencies
 sudo apt-get -y install cmake libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev
