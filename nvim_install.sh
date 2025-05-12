@@ -15,4 +15,4 @@ fi
 
 mv nvim-linux-x86_64.appimage ~/Applications/nvim
 chmod +x ~/Applications/nvim
-rm -rf nvim-linux-x86_64.appimage shasum.txt
+rm -rf shasum.txt
