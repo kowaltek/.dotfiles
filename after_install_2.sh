@@ -6,7 +6,7 @@ set -e
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # stow configs
-rm ~/.zshrc
+rm ~/.zshrc || true
 cd ~/.dotfiles
 stow nvim tmux zsh i3 i3status alacritty psql kanata
 
