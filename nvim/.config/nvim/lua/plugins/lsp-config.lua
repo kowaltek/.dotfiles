@@ -59,7 +59,6 @@ return {
 			"graphql",
 			"templ",
 			"prismals",
-			"sqls",
 			"bashls",
 		}
 		for _, server in ipairs(servers) do
@@ -72,27 +71,26 @@ return {
 		-- TODO
 		--
 		-- create something by myself
-		-- this crashes neovim occasionally
-        -- or not?
+		-- this crashes neovim if db connection isn't set up properly
 		--
-		-- sqls setup
-		local sqls_root = vim.fs.root(0, ".git")
-		if sqls_root == nil then
-			sqls_root = ""
-		end
-        -- dunno if the below line is correct
-		-- sqls_root = vim.fs.joinpath(vim.api.nvim_command_output("pwd"), sqls_root)
-		-- TODO
-		-- change to mason root
-		lsp_config.sqls.setup({
-			on_attach = function(_, bufnr)
-				on_attach(_, bufnr)
-				vim.keymap.set("n", "<space>f", ":Format<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "<space>F", ":FormatWrite<CR>", { buffer = bufnr })
-			end,
-            capabilities = capabilities,
-			cmd = { "/home/mk/.local/share/nvim/mason/bin/sqls", "-config", vim.fs.joinpath(sqls_root, ".sqlsrc.yml") },
-		})
+		-- -- sqls setup
+		-- local sqls_root = vim.fs.root(0, ".git")
+		-- if sqls_root == nil then
+		-- 	sqls_root = ""
+		-- end
+		--       -- dunno if the below line is correct
+		-- -- sqls_root = vim.fs.joinpath(vim.api.nvim_command_output("pwd"), sqls_root)
+		-- -- TODO
+		-- -- change to mason root
+		-- lsp_config.sqls.setup({
+		-- 	on_attach = function(_, bufnr)
+		-- 		on_attach(_, bufnr)
+		-- 		vim.keymap.set("n", "<space>f", ":Format<CR>", { buffer = bufnr })
+		-- 		vim.keymap.set("n", "<space>F", ":FormatWrite<CR>", { buffer = bufnr })
+		-- 	end,
+		--           capabilities = capabilities,
+		-- 	cmd = { "/home/mk/.local/share/nvim/mason/bin/sqls", "-config", vim.fs.joinpath(sqls_root, ".sqlsrc.yml") },
+		-- })
 
 		-- go setup
 		lsp_config.gopls.setup({
@@ -137,9 +135,9 @@ return {
 			},
 		})
 
-        -- TODO
-        -- fix rust setup
-        --
+		-- TODO
+		-- fix rust setup
+		--
 		-- rust setup
 		-- local rt = require("rust-tools")
 		-- local mason_registry = require("mason-registry")
