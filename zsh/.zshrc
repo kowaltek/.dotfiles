@@ -99,6 +99,9 @@ export PATH="$HOME/Applications:$PATH"
 # add local scripts folder to path
 export PATH="$HOME/.local/bin:$PATH"
 
+# make neovim our manpager
+export MANPAGER="nvim +Man!"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # go configuration
