@@ -60,6 +60,7 @@ return {
 			"templ",
 			"prismals",
 			"bashls",
+			"emmet_language_server",
 		}
 		for _, server in ipairs(servers) do
 			lsp_config[server].setup({
@@ -127,9 +128,12 @@ return {
 					},
 					workspace = {
 						library = {
-							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-							[vim.fn.stdpath("config") .. "../lua"] = true,
+							vim.env.VIMRUNTIME,
 						},
+						checkThirdParty = false,
+					},
+					telemetry = {
+						enable = false,
 					},
 				},
 			},
