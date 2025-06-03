@@ -109,6 +109,8 @@ export MANPAGER='nvim --appimage-extract-and-run -c "set ft=man"'
 # while $HOME/go/bin is for tools installed using go install
 export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin
 
+export PATH="$HOME/.govm/shim:$PATH"
+
 # rust configuration
 export PATH=$PATH:$HOME/.cargo/bin
 
