@@ -10,7 +10,7 @@ normal = { family = "Hack Nerd Font Mono", style = "Regular" }
 bold = { family = "Hack Nerd Font Mono", style = "Regular" }
 italic = { family = "Hack Nerd Font Mono", style = "Regular" }
 bold_italic = { family = "Hack Nerd Font Mono", style = "Regular" }
-size = 14
+size = 12
 
 [colors]
 primary = { background = "#1A1D23" }

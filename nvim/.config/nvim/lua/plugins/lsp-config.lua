@@ -167,11 +167,11 @@ return {
 		-- })
 
 		-- typescript/javascript setup
-		lsp_config.denols.setup({
-			on_attach = on_attach,
-			capabilities = capabilities,
-			root_dir = lsp_config.util.root_pattern("deno.json", "deno.jsonc"),
-		})
+		-- lsp_config.denols.setup({
+		-- 	on_attach = on_attach,
+		-- 	capabilities = capabilities,
+		-- 	root_dir = lsp_config.util.root_pattern("deno.json", "deno.jsonc"),
+		-- })
 
 		lsp_config.ts_ls.setup({
 			on_attach = function(_, bufnr)

@@ -60,6 +60,7 @@ sh ./git_aliases.sh
 
 # install latest lts node version
 nvm install --lts node
+nvm use --lts
 
 # install go
 ./go_install.sh

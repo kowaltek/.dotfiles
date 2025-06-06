@@ -7,18 +7,6 @@
 // from the command palette.
 [
   {
-    "context": "Workspace",
-    "bindings": {
-      // "shift shift": "file_finder::Toggle"
-    }
-  },
-  {
-    "context": "Editor",
-    "bindings": {
-      // "j k": ["workspace::SendKeystrokes", "escape"]
-    }
-  },
-  {
     "context": "Editor && VimControl && !VimWaiting && !menu",
     "bindings": {
       "space b": "git::Blame",
@@ -31,7 +19,7 @@
       "space /": "workspace::NewSearch",
       "n": "search::SelectNextMatch",
       "shift-n": "search::SelectPreviousMatch",
-      "space t": "workspace::NewCenterTerminal",
+      "space t": "workspace::NewTerminal",
       "g c c": "editor::ToggleComments",
       "space c": "pane::CloseActiveItem"
     }
