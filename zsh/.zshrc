@@ -172,3 +172,5 @@ export NVM_DIR="$HOME/.nvm"
 # NEVER COMMIT VALID AUTH TOKENS!!!!!!!!!!!!!!!!!!!
 export BW_CLIENTID=""
 export BW_CLIENTSECRET=""
+
+export GEMINI_API_KEY=""

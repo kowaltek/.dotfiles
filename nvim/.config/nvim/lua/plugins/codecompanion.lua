@@ -6,13 +6,13 @@ return {
 	},
 	opts = {
 		strategies = {
-			chat = { adapter = "ollama" },
+			chat = { adapter = "gemini" },
 		},
 		adapters = {
-			ollama = function()
-				return require("codecompanion.adapters").extend("ollama", {
+			gemini = function()
+				return require("codecompanion.adapters").extend("gemini", {
 					env = {
-						url = "http://localhost:8080",
+                      api_key = "cmd:echo $GEMINI_API_KEY"
 					},
 				})
 			end,
