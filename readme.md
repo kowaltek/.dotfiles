@@ -27,6 +27,8 @@ Remember to setup nextcloud client.
 
 Remember to install tmux plugins (`prefix + I`).
 
+To use bitwarden CLI make sure to update auth tokens in `.zshrc`.
+
 ### Wallpapers in i3
 
 Setting wallpapers in i3 is done by set_wallpaper.sh script from Scripts repo. It expects properly named wallpaper files in ~/Pictures/wallpapers folder. Have a look at the script for details. Example files are:
