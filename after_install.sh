@@ -62,9 +62,6 @@ sh ./git_aliases.sh
 nvm install --lts node
 nvm use --lts
 
-# install bitwarden CLI
-npm install -g @bitwarden/cli
-
 # install go
 ./go_install.sh
 

@@ -2,6 +2,12 @@
 
 set -e
 
+# install bitwarden CLI
+npm install -g @bitwarden/cli
+
+# install govm
+go install github.com/melkeydev/govm@latest
+
 # install powerlevel10k theme
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
