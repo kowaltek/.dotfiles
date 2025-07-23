@@ -85,6 +85,7 @@ sudo udevadm control --reload-rules && sudo udevadm trigger
 wget -O get-platformio.py https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py
 python3 get-platformio.py
 rm get-platformio.py
+sudo usermod -aG dialout $USER
 
 # clone scripts
 git clone git@github.com:kowaltek/scripts.git ~/Scripts
