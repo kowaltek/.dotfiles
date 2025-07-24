@@ -61,6 +61,7 @@ return {
 			"prismals",
 			"bashls",
 			"emmet_language_server",
+            "jsonls"
 		}
 		for _, server in ipairs(servers) do
 			lsp_config[server].setup({
