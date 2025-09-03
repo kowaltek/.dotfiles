@@ -74,13 +74,16 @@ ZSH_THEME=""
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git history-substring-search fzf ssh-agent aws)
+plugins=(git history-substring-search fzf ssh-agent aws nvm)
 
 # ssh-agent config
 zstyle :omz:plugins:ssh-agent agent-forwarding yes
 zstyle :omz:plugins:ssh-agent identities id_rsa id_ed25519
 zstyle :omz:plugins:ssh-agent lifetime 4h
 zstyle :omz:plugins:ssh-agent quiet yes
+
+# nvm plugin setup
+zstyle :omz:plugins:nvm lazy yes
 
 source $ZSH/oh-my-zsh.sh
 
@@ -100,6 +103,7 @@ export PATH="$HOME/Applications:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # make neovim our manpager
+# export MANPAGER='nvim --appimage-extract-and-run -c "set ft=man"'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -162,10 +166,6 @@ alias lg='lazygit'
 # Starship prompt initialization
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(starship init zsh)"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # update these after system setup
 # NEVER COMMIT VALID AUTH TOKENS!!!!!!!!!!!!!!!!!!!
