@@ -100,7 +100,6 @@ export PATH="$HOME/Applications:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 # make neovim our manpager
-export MANPAGER='nvim --appimage-extract-and-run -c "set ft=man"'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
