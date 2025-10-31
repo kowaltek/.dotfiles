@@ -5,6 +5,8 @@ set -e
 # install bitwarden CLI
 npm install -g @bitwarden/cli
 
+npm install -g sql-formatter
+
 # install govm
 go install github.com/melkeydev/govm@latest
 

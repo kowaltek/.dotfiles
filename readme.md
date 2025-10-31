@@ -10,7 +10,7 @@ sudo apt update && sudo apt upgrade -y
 
 Preferred method for proceeding is:
  - install git and clone this repo,
- - create ssh keys using `ssh_init.sh` script (keys are managed by ssh-agent then),
+ - create ssh keys using `ssh_init.sh` script (keys are managed by ssh-agent then) (consider moving keys to bitwarden and reusing),
  - add keys to github,
  - remove and clone this repo again using ssh.
 
@@ -19,7 +19,7 @@ Preferred method for proceeding is:
 Then run after_install scripts in order, from the `$HOME/.dotfiles` level, provide required input when prompted and relogin after each step (on VMs it might be required to restart the machine between each step).
 Important: allow non-root users for wireshark to capture packets upon installation - if you forget to do this run `sudo dpkg-reconfigure wireshark-common` to reconfigure it after installation is complete.
 
-Remember to set appropriate font in your terminal emulator, although for i3/alacritty combination it's already configured.
+Alacritty is set as default terminal emulator.
 
 For ubuntu you might want to install shell extensions and pop os shell (note: use master_noble branch) - this should be covered by `after_install_3.sh` though.
 
@@ -37,7 +37,7 @@ Setting wallpapers in i3 is done by set_wallpaper.sh script from Scripts repo. I
 
 ### Alacritty
 
-Alacritty is build from source for now. It's set as default terminal emulator for i3.
+Alacritty is build from source for now.
 
 ### Tmux
 
@@ -56,6 +56,13 @@ The sessions are also automatically saved every 15 mins.
 
 To rename windows use `prefix + ,`.
 To rename sessions use `prefix + $`.
+
+### Formatting sql
+
+Using `sql-formatter` npm package for that.
+To run it in neovim, select the query to be formatted and run `!sql-formatter -c ~/.sql-formatter.json`.
+By default it supports postgres.
+For other dialects either specify config as string or create additional config files.
 
 ### App list (not exactly development related):
 
