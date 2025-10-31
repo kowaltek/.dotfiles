@@ -66,7 +66,7 @@ return {
 			"bashls",
 			"emmet_language_server",
             "jsonls",
-            "cmake-language-server"
+            "cmake"
 		}
 		for _, server in ipairs(servers) do
 			lsp_config[server].setup({
