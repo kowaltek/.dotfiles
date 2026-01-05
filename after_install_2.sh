@@ -2,9 +2,7 @@
 
 set -e
 
-# install bitwarden CLI
-npm install -g @bitwarden/cli
-
+# install needed npm packages
 npm install -g sql-formatter
 
 # install govm
