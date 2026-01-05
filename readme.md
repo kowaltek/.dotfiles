@@ -57,6 +57,10 @@ The sessions are also automatically saved every 15 mins.
 To rename windows use `prefix + ,`.
 To rename sessions use `prefix + $`.
 
+### ZSH
+
+To open current command in nvim for editing, first enter 'Esc' (goes to NORMAL mode) and follow it by pressing <space>.
+
 ### Formatting sql
 
 Using `sql-formatter` npm package for that.

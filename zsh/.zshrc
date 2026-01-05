@@ -93,8 +93,14 @@ source $ZSH/oh-my-zsh.sh
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
-# restores some bash shortcuts
-bindkey -e
+# vim keybindings
+bindkey -v
+export KEYTIMEOUT=1 # for faster switch between modes
+
+# open command buffer in editor
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd ' ' edit-command-line
 
 # add appimage folder to path
 export PATH="$HOME/Applications:$PATH"
@@ -163,13 +169,56 @@ fi
 alias ll='ls -alF'
 alias lg='lazygit'
 
-# Starship prompt initialization
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
-eval "$(starship init zsh)"
-
 # update these after system setup
 # NEVER COMMIT VALID AUTH TOKENS!!!!!!!!!!!!!!!!!!!
 export BW_CLIENTID=""
 export BW_CLIENTSECRET=""
+export GEMINI_API_KEY="AIzaSyBBkE-hUp1QWlpElvwOA-vTngEjnZVqg4M"
 
-export GEMINI_API_KEY=""
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/home/mk/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<
+
+# Starship prompt initialization
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
+# Check that the function `starship_zle-keymap-select()` is defined.
+# xref: https://github.com/starship/starship/issues/3418
+type starship_zle-keymap-select >/dev/null || \
+  {
+    eval "$(starship init zsh)"
+  }
+
+# # makes that so when in insert mode, the cursor is a beam '|' instead of block
+# cursor_mode() {
+#     # See https://ttssh2.osdn.jp/manual/4/en/usage/tips/vim.html for cursor shapes
+#     cursor_block='\e[2 q'
+#     cursor_beam='\e[6 q'
+#
+#     function zle-keymap-select {
+#         if [[ ${KEYMAP} == vicmd ]] ||
+#             [[ $1 = 'block' ]]; then
+#             echo -ne $cursor_block
+#         elif [[ ${KEYMAP} == main ]] ||
+#             [[ ${KEYMAP} == viins ]] ||
+#             [[ ${KEYMAP} = '' ]] ||
+#             [[ $1 = 'beam' ]]; then
+#             echo -ne $cursor_beam
+#         fi
+#     }
+#
+#     zle-line-init() {
+#         echo -ne $cursor_beam
+#     }
+#
+#     zle -N zle-keymap-select
+#     zle -N zle-line-init
+# }
+#
+# cursor_mode
+
+
