@@ -1,6 +1,43 @@
-\set PROMPT1 '%n@%/\n%R%x%# '
-\set PROMPT2 '%R%x%# '
-\pset border 1
+-- %n: username
+-- %M: host
+-- %/: database
+-- %R: normally '=', but '^' if in single-line mode, and '!' if the session is disconnected from the database
+-- %x: transaction status: an empty string when not in a transaction block, or '*' when in a transaction block, or '!'  when in a failed transaction block, or '?' when the transaction state is indeterminate (for example, because there is no connection)
+\set PROMPT1 '%n@%M/%/\n%R%x%# '
+
+-- %R: in prompt 2 the sequence is replaced by '-', '\*', a single quote, a double quote, or a dollar sign, depending on whether psql expects more input because the command wasn’t terminated yet, because you are inside a /\* ... \*/ comment, or because you are inside a quoted or dollar-escaped string
+-- %x: transaction status: an empty string when not in a transaction block, or '*' when in a transaction block, or '!'  when in a failed transaction block, or '?' when the transaction state is indeterminate (for example, because there is no connection)
+\set PROMPT2 '%R%x%> '
+
+-- By default, NULL displays as an empty space. Is it actually an empty
+-- string, or is it null? This makes that distinction visible.
+\pset null '[NULL]'
+
+-- Use table format (with headers across the top) by default, but switch to
+-- expanded table format when there's a lot of data, which makes it much
+-- easier to read.
+\x auto
+
+-- Verbose error reports.
+\set VERBOSITY verbose
+
+-- Use a separate history file per-database.
+\set HISTFILE ~/.psql_history- :DBNAME
+-- If a command is run more than once in a row, only store it once in the
+-- history.
+\set HISTCONTROL ignoredups
+
+-- Autocomplete keywords (like SELECT) in upper-case, even if you started
+-- typing them in lower case.
+\set COMP_KEYWORD_CASE upper
+
+\timing
+
+\pset border 2
 \pset format wrapped
 \pset linestyle unicode
-\pset null NULL
+
+\set show_slow_queries `cat ~/.psqlrc-aliases/show_slow_queries.sql`
+\set show_cache_hit_rate `cat ~/.psqlrc-aliases/show_cache_hit_rate.sql`
+\set show_index_cache_hit_rate `cat ~/.psqlrc-aliases/show_index_cache_hit_rate.sql`
+\set show_index_usage_of_biggest_tables `cat ~/.psqlrc-aliases/show_index_usage_of_biggest_tables.sql`
