@@ -24,11 +24,11 @@ return {
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { silent = true })
 			vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
 			vim.keymap.set("n", "]d", function()
-              vim.diagnostic.jump({count = 1, float = true})
-            end, bufopts)
+				vim.diagnostic.jump({ count = 1, float = true })
+			end, bufopts)
 			vim.keymap.set("n", "[d", function()
-              vim.diagnostic.jump({count = -1, float = true})
-            end, bufopts)
+				vim.diagnostic.jump({ count = -1, float = true })
+			end, bufopts)
 			vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
 			vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
 			vim.keymap.set("n", "<space>wl", function()
@@ -65,8 +65,9 @@ return {
 			"prismals",
 			"bashls",
 			"emmet_language_server",
-            "jsonls",
-            "cmake"
+			"jsonls",
+			"cmake",
+			"eslint",
 		}
 		for _, server in ipairs(servers) do
 			lsp_config[server].setup({
@@ -211,8 +212,6 @@ return {
 				},
 			},
 		})
-
-		lsp_config["eslint"].setup({})
 
 		local sql_formatter_config = require("formatter.filetypes.sql").sql_formatter()
 		sql_formatter_config.args = {
