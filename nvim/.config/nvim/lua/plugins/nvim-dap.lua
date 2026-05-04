@@ -215,8 +215,5 @@ return {
 		}
 		dap.configurations.cpp = dap.configurations.c
 		dap.configurations.rust = dap.configurations.c
-
-		-- loads launch.json from default location (.vscode/launch.json)
-		require("dap.ext.vscode").load_launchjs(nil, { node2 = { "javascript" } })
 	end,
 }
