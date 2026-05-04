@@ -3,7 +3,6 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		"folke/neodev.nvim",
-		"simrat39/rust-tools.nvim",
 		"mhartington/formatter.nvim",
 		"hrsh7th/nvim-cmp",
 	},
@@ -13,9 +12,6 @@ return {
 			pattern = { "qf" },
 			command = [[nnoremap <buffer> <CR> <CR>:cclose<CR>zz]],
 		})
-
-		local lsp_config = require("lspconfig")
-		local util = require("lspconfig/util")
 
 		local on_attach = function(_, bufnr)
 			local bufopts = { noremap = true, silent = true, buffer = bufnr }
@@ -44,10 +40,7 @@ return {
 		end
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		-- TODO
-		-- remove after figuring out what breaks if this isn't set
-		-- setting this brakes rust-analyzer when running rust-tools
-		-- capabilities.offsetEncoding = "utf-16"
+		capabilities.offsetEncoding = "utf-16"
 
 		-- setup for languages using default configuration
 		local servers = {
@@ -70,10 +63,11 @@ return {
 			"eslint",
 		}
 		for _, server in ipairs(servers) do
-			lsp_config[server].setup({
+			vim.lsp.config(server, {
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
+            vim.lsp.enable(server)
 		end
 
 		-- TODO
@@ -90,7 +84,7 @@ return {
 		-- -- sqls_root = vim.fs.joinpath(vim.api.nvim_command_output("pwd"), sqls_root)
 		-- -- TODO
 		-- -- change to mason root
-		-- lsp_config.sqls.setup({
+		-- vim.lsp.config.sqls.setup({
 		-- 	on_attach = function(_, bufnr)
 		-- 		on_attach(_, bufnr)
 		-- 		vim.keymap.set("n", "<space>f", ":Format<CR>", { buffer = bufnr })
@@ -101,13 +95,13 @@ return {
 		-- })
 
 		-- go setup
-		lsp_config.gopls.setup({
+		vim.lsp.config("gopls", {
 			on_attach = function(_, bufnr)
 				on_attach(_, bufnr)
 			end,
 			capabilities = capabilities,
 			filetypes = { "go", "gomod", "gowork", "gotmpl" },
-			root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+			root_markers = { "go.work", "go.mod", ".git" },
 			settings = {
 				gopls = {
 					completeUnimported = true,
@@ -119,9 +113,10 @@ return {
 				},
 			},
 		})
+        vim.lsp.enable("gopls")
 
 		-- lua setup
-		lsp_config.lua_ls.setup({
+		vim.lsp.config("lua_ls", {
 			on_attach = function(_, bufnr)
 				on_attach(_, bufnr)
 				vim.keymap.set("n", "<space>f", ":Format<CR>", { buffer = bufnr })
@@ -145,52 +140,27 @@ return {
 				},
 			},
 		})
-
-		-- TODO
-		-- fix rust setup
-		--
-		-- rust setup
-		-- local rt = require("rust-tools")
-		-- local mason_registry = require("mason-registry")
-		-- local codelldb = mason_registry.get_package("codelldb")
-		-- local extension_path = codelldb:get_install_path() .. "/extension/"
-		-- local codelldb_path = extension_path .. "adapter/codelldb"
-		-- local liblldb_path = extension_path .. "lldb/lib/liblldb.dylib"
-		--
-		-- rt.setup({
-		-- 	dap = {
-		-- 		adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path),
-		-- 	},
-		-- 	server = {
-		-- 		on_attach = function(_, bufnr)
-		-- 			on_attach(_, bufnr)
-		-- 			-- Hover actions
-		-- 			vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
-		-- 			-- Code action groups
-		-- 			vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
-		-- 		end,
-		-- 		capabilities = capabilities,
-		-- 	},
-		-- })
+        vim.lsp.enable("lua_ls")
 
 		-- typescript/javascript setup
-		-- lsp_config.denols.setup({
+		-- vim.lsp.config.denols.setup({
 		-- 	on_attach = on_attach,
 		-- 	capabilities = capabilities,
-		-- 	root_dir = lsp_config.util.root_pattern("deno.json", "deno.jsonc"),
+		-- 	root_dir = vim.lsp.config.util.root_pattern("deno.json", "deno.jsonc"),
 		-- })
 
-		lsp_config.ts_ls.setup({
+		vim.lsp.config("ts_ls", {
 			on_attach = function(_, bufnr)
 				on_attach(_, bufnr)
 				vim.keymap.set("n", "<space>f", ":Format<CR>", { buffer = bufnr })
 				vim.keymap.set("n", "<space>F", ":FormatWrite<CR>", { buffer = bufnr })
 			end,
 			capabilities = capabilities,
-			root_dir = lsp_config.util.root_pattern("package.json"),
+			root_markers = { "package.json" },
 		})
+        vim.lsp.enable("ts_ls")
 
-		lsp_config.jsonls.setup({
+		vim.lsp.config("jsonls", {
 			on_attach = function(_, bufnr)
 				on_attach(_, bufnr)
 				vim.keymap.set("n", "<space>f", ":Format<CR>", { buffer = bufnr })
@@ -198,9 +168,10 @@ return {
 			end,
 			capabilities = capabilities,
 		})
+        vim.lsp.enable("jsonls")
 
 		-- setup linters and formatters
-		lsp_config["golangci_lint_ls"].setup({
+		vim.lsp.config("golangci_lint_ls", {
 			init_options = {
 				command = {
 					"golangci-lint",
@@ -212,6 +183,7 @@ return {
 				},
 			},
 		})
+        vim.lsp.enable("golangci_lint_ls")
 
 		local sql_formatter_config = require("formatter.filetypes.sql").sql_formatter()
 		sql_formatter_config.args = {
