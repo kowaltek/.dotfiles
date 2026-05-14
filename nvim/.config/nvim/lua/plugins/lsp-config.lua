@@ -67,7 +67,7 @@ return {
 				on_attach = on_attach,
 				capabilities = capabilities,
 			})
-            vim.lsp.enable(server)
+			vim.lsp.enable(server)
 		end
 
 		-- TODO
@@ -113,7 +113,7 @@ return {
 				},
 			},
 		})
-        vim.lsp.enable("gopls")
+		vim.lsp.enable("gopls")
 
 		-- lua setup
 		vim.lsp.config("lua_ls", {
@@ -140,7 +140,7 @@ return {
 				},
 			},
 		})
-        vim.lsp.enable("lua_ls")
+		vim.lsp.enable("lua_ls")
 
 		-- typescript/javascript setup
 		-- vim.lsp.config.denols.setup({
@@ -148,6 +148,21 @@ return {
 		-- 	capabilities = capabilities,
 		-- 	root_dir = vim.lsp.config.util.root_pattern("deno.json", "deno.jsonc"),
 		-- })
+
+		local vue_language_server_path = vim.fn.expand("$MASON/packages")
+			.. "/vue-language-server"
+			.. "/node_modules/@vue/language-server"
+
+		local tsserver_filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" }
+		local vue_plugin = {
+			name = "@vue/typescript-plugin",
+			location = vue_language_server_path,
+			languages = { "vue" },
+			configNamespace = "typescript",
+		}
+
+		vim.lsp.config("vue_ls", {})
+		vim.lsp.enable("vue_ls") -- If using `ts_ls` replace `vtsls` to `ts_ls`
 
 		vim.lsp.config("ts_ls", {
 			on_attach = function(_, bufnr)
@@ -157,8 +172,14 @@ return {
 			end,
 			capabilities = capabilities,
 			root_markers = { "package.json" },
+			init_options = {
+				plugins = {
+					vue_plugin,
+				},
+			},
+			filetypes = tsserver_filetypes,
 		})
-        vim.lsp.enable("ts_ls")
+		vim.lsp.enable("ts_ls")
 
 		vim.lsp.config("jsonls", {
 			on_attach = function(_, bufnr)
@@ -168,7 +189,7 @@ return {
 			end,
 			capabilities = capabilities,
 		})
-        vim.lsp.enable("jsonls")
+		vim.lsp.enable("jsonls")
 
 		-- setup linters and formatters
 		vim.lsp.config("golangci_lint_ls", {
@@ -183,7 +204,7 @@ return {
 				},
 			},
 		})
-        vim.lsp.enable("golangci_lint_ls")
+		vim.lsp.enable("golangci_lint_ls")
 
 		local sql_formatter_config = require("formatter.filetypes.sql").sql_formatter()
 		sql_formatter_config.args = {
