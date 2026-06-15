@@ -15,7 +15,7 @@ return {
 				workspaces = {
 					{
 						name = "general",
-						path = "~/Nextcloud/notes",
+						path = "~/notes",
 					},
 				},
 

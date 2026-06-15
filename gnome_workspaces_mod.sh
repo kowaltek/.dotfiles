@@ -15,11 +15,14 @@ for i in {1..9}; do gsettings set org.gnome.desktop.wm.keybindings move-to-works
 
 gsettings set org.gnome.desktop.default-applications.terminal exec alacritty
 
+# disable gnome dock
+gnome-extensions disable ubuntu-dock@ubuntu.com
+
 # install pop shell
 # this requires typescript to be globally available
 git clone https://github.com/pop-os/shell ~/pop-shell
 cd ~/pop-shell
-git co master_noble
+git co resolute_racoon
 make local-install
 cd -
 rm -rf ~/pop-shell

@@ -2,8 +2,8 @@
 
 set -e
 
-# install needed npm packages
-npm install -g sql-formatter
+# install needed node packages
+vp install -g sql-formatter
 
 # install govm
 go install github.com/melkeydev/govm@latest
@@ -18,9 +18,5 @@ stow nvim tmux zsh i3 i3status alacritty psql kanata
 
 systemctl --user daemon-reload
 systemctl --user enable --now kanata.service
-
-# install aws tools
-# this requires node to be already installed
-./awstools_install.sh
 
 printf "\n\n	You need to login again\n\n"

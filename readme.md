@@ -23,11 +23,7 @@ Alacritty is set as default terminal emulator.
 
 For ubuntu you might want to install shell extensions and pop os shell (note: use master_noble branch) - this should be covered by `after_install_3.sh` though.
 
-Remember to setup nextcloud client.
-
 Remember to install tmux plugins (`prefix + I`).
-
-To use bitwarden CLI make sure to update auth tokens in `.zshrc`.
 
 ### Wallpapers in i3
 
@@ -93,6 +89,11 @@ Then, add the required group (should be created by the install command, if this 
 `sudo addgroup fuse`
 `sudo adduser $USER fuse`
 
+### Notes setup
+
+Clone the repo to `~/notes` directory.
+
 ### FAQ
 
 1. In case you're seeing any errors from treesitter, please make sure you ran `TSUpdate` command to update all the parsers.
+
