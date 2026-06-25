@@ -11,6 +11,8 @@ return {
 			require("nvim-treesitter").install({
 				"javascript",
 				"typescript",
+                "bash",
+                "lua",
 				"json",
 				"css",
 				"html",
